@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3aw4ba5nhf2v"]
+
+[ext_resource type="Script" path="res://Objects/Player/Skill/Bow/Bow Bullet.gd" id="1_edu77"]
+[ext_resource type="Texture2D" uid="uid://bvyltv6fkwqh0" path="res://Objects/Player/Skill/Bow/arrow.png" id="2_knm7x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1t6s2"]
+radius = 1.41421
+height = 16.9706
+
+[node name="BowBullet" type="CharacterBody2D" node_paths=PackedStringArray("queue_timer")]
+z_index = 2000
+script = ExtResource("1_edu77")
+queue_timer = NodePath("queue time")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, -6)
+texture = ExtResource("2_knm7x")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -6)
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_1t6s2")
+
+[node name="queue time" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="queue time" to="." method="_on_queue_time_timeout"]
