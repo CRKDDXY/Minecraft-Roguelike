@@ -57,5 +57,5 @@ func _on_attack_timer_timeout():
 		Bow_Bullet.goal = attack_goal[0].position
 		Bow_Bullet.scale = Vector2(3,3)
 		Bow_Bullet.position = Player.position
-		Player.get_node("..").add_child(Bow_Bullet)
+		Player.get_node("../Player Bullets").add_child(Bow_Bullet)
 		anima_.play("idle")

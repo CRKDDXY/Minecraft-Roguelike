@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3xclkw45wjr2"]
+
+[ext_resource type="Texture2D" uid="uid://bwv1dc2lnqb3n" path="res://Objects/Enemy/Skeleton/skeleton.png" id="1_0uc2p"]
+[ext_resource type="Script" path="res://Objects/Enemy/Skeleton/Skeleton.gd" id="1_qta6t"]
+[ext_resource type="Texture2D" uid="uid://bnxsg2pjf01w2" path="res://Objects/Player/Skill/Bow/bow0.png" id="3_jsthi"]
+[ext_resource type="Texture2D" uid="uid://c2yqpl40ckjjk" path="res://Objects/Player/Skill/Bow/bow1.png" id="4_0ikds"]
+[ext_resource type="Texture2D" uid="uid://cv44dodxuia1g" path="res://Objects/Player/Skill/Bow/bow2.png" id="5_nqon3"]
+[ext_resource type="Texture2D" uid="uid://c6gwvon2w1cwj" path="res://Objects/Player/Skill/Bow/bow3.png" id="6_bar01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_np5iv"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dkkk8"]
+radius = 75.0067
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf5tm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jsthi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0ikds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nqon3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bar01")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jsthi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("anima_father", "anima", "attack_timer")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_qta6t")
+anima_father = NodePath("Node2D")
+anima = NodePath("Node2D/AnimatedSprite2D")
+attack_timer = NodePath("Attack Timer")
+
+[node name="Skeleton" type="Sprite2D" parent="."]
+texture = ExtResource("1_0uc2p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_np5iv")
+
+[node name="Attack Range" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Range"]
+shape = SubResource("CircleShape2D_dkkk8")
+
+[node name="Attack Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(-4, -4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gf5tm")
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
+
+[connection signal="body_entered" from="Attack Range" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="Attack Range" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]

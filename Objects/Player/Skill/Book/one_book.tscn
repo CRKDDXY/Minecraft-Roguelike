@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://1l4oa2rigw6p"]
+
+[ext_resource type="Texture2D" uid="uid://pmfwaxld2o68" path="res://Objects/Player/Skill/Book/book.png" id="1_0hkgx"]
+[ext_resource type="Script" path="res://Objects/Player/Skill/Book/one_book.gd" id="1_usy7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1igh"]
+radius = 8.06226
+
+[node name="One Book" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_usy7u")
+
+[node name="Book" type="Sprite2D" parent="."]
+texture = ExtResource("1_0hkgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g1igh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

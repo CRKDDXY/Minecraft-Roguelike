@@ -9,6 +9,8 @@ height = 16.9706
 
 [node name="BowBullet" type="CharacterBody2D" node_paths=PackedStringArray("queue_timer")]
 z_index = 2000
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_edu77")
 queue_timer = NodePath("queue time")
 
@@ -27,4 +29,14 @@ wait_time = 4.0
 one_shot = true
 autostart = true
 
+[node name="hit" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
+position = Vector2(-6, -6)
+rotation = -0.785398
+shape = SubResource("CapsuleShape2D_1t6s2")
+
 [connection signal="timeout" from="queue time" to="." method="_on_queue_time_timeout"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

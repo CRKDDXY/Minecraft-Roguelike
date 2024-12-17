@@ -14,6 +14,7 @@ func _process(_delta):
 	rotation_degrees += 135
 	move_and_slide()
 
+#自身消除计时器
 func _on_queue_time_timeout():
 	self.queue_free()
 
@@ -26,3 +27,6 @@ func get_point_behind(a: Vector2, b: Vector2, distance: float) -> Vector2:
 	# 沿着这个方向向量延伸指定的距离
 	var new_point = b + direction * distance
 	return new_point
+
+func _on_hit_body_entered(body):
+	body._get_hit()

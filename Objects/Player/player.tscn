@@ -1,17 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl67i73288500"]
+[gd_scene load_steps=4 format=3 uid="uid://bl67i73288500"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_jmjpj"]
 [ext_resource type="Texture2D" uid="uid://b12mcopmkfmtv" path="res://Objects/Player/Alex.png" id="2_hvha7"]
-[ext_resource type="PackedScene" uid="uid://e8uqasbkb03m" path="res://Objects/Player/Skill/Bow/bow.tscn" id="3_kka50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vynar"]
 size = Vector2(8, 8)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Bow")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("skills")]
 z_index = 1000
-collision_mask = 4
+collision_mask = 0
 script = ExtResource("1_jmjpj")
-Bow = NodePath("Skills/Bow")
+skills = NodePath("Skills")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hvha7")
@@ -22,6 +21,3 @@ shape = SubResource("RectangleShape2D_vynar")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Skills" type="Node2D" parent="."]
-
-[node name="Bow" parent="Skills" instance=ExtResource("3_kka50")]
-scale = Vector2(0.5, 0.5)
