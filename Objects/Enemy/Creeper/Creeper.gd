@@ -12,9 +12,12 @@ var player : CharacterBody2D
 func _ready():
 	player = get_node("../../Player")
 
+var can_kill : bool = true
+
 #受击
 func _get_hit():
-	self.queue_free()
+	if can_kill:
+		self.queue_free()
 
 func _process(_delta):
 	if player != null and can_move:
@@ -42,6 +45,8 @@ func _on_bang_timer_timeout():
 	tween.tween_property(creeper_texture,"modulate",bang_modulate,0.8)
 	await tween.finished
 	tween.kill()
+	#到这里就已经算是开始爆炸了，不能被阻止，所以修改苦力怕的是否能被击杀的逻辑，防止爆炸中途被子弹击中消除
+	can_kill = false
 	if ang_range.begin_ready_bang:
 		ang_range._state_to_bang()
 		can_move = false #开始爆炸了，停止移动

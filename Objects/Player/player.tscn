@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl67i73288500"]
+[gd_scene load_steps=6 format=3 uid="uid://bl67i73288500"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_jmjpj"]
 [ext_resource type="Texture2D" uid="uid://b12mcopmkfmtv" path="res://Objects/Player/Alex.png" id="2_hvha7"]
+[ext_resource type="Script" path="res://Objects/Player/Camera Dither.gd" id="3_f8hl6"]
+[ext_resource type="PackedScene" uid="uid://b323hisuq6pqy" path="res://Objects/Player/Skill/Hp Hui/Hp Bar.tscn" id="4_sftwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vynar"]
 size = Vector2(8, 8)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("skills")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("skills", "camera", "hp_bar")]
 z_index = 1000
 collision_mask = 0
 script = ExtResource("1_jmjpj")
 skills = NodePath("Skills")
+camera = NodePath("Camera2D")
+hp_bar = NodePath("Camera2D/HpBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hvha7")
@@ -19,5 +23,13 @@ texture = ExtResource("2_hvha7")
 shape = SubResource("RectangleShape2D_vynar")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_f8hl6")
+
+[node name="HpBar" parent="Camera2D" instance=ExtResource("4_sftwh")]
+offset_left = -125.0
+offset_top = 70.0
+offset_right = -25.0
+offset_bottom = 170.0
+scale = Vector2(0.5, -0.5)
 
 [node name="Skills" type="Node2D" parent="."]

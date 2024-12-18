@@ -5,6 +5,9 @@ var move_speed : float = 150 #玩家初始移动速度
 #武器库
 @export var skills : Node2D #技能组
 
+#相机
+@export var camera : Camera2D
+
 func _ready():
 	var skill_bow = preload("res://Objects/Player/Skill/Bow/bow.tscn").instantiate()
 	skill_bow.scale *= 0.5
@@ -24,5 +27,11 @@ func _process(_delta):
 	else:velocity.x = move_speed * direction_x
 	move_and_slide()
 
-func _get_hit():
-	print("受击")
+@export var hp_bar : GridContainer
+
+func _get_hit(type : int):
+	match(type):
+		0:pass
+		1:camera.add_trauma(0.5)
+	hp_bar._player_get_hit(1)
+	

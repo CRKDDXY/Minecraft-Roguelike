@@ -28,5 +28,13 @@ func get_point_behind(a: Vector2, b: Vector2, distance: float) -> Vector2:
 	var new_point = b + direction * distance
 	return new_point
 
+var can_give_player_hit : bool = true
+
 func _on_hit_body_entered(body):
-	body._get_hit()
+	if body.name == "Player":
+		#每只箭只能攻击玩家一次
+		if can_give_player_hit:
+			body._get_hit(0)
+			can_give_player_hit = false
+	else:
+		body._get_hit()

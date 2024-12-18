@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1536
 window/size/viewport_height=864
+window/stretch/mode="viewport"
 
 [input]
 
@@ -55,6 +56,7 @@ move_right={
 2d_physics/layer_4="Enemy"
 2d_physics/layer_5="Enemy_Attack_Range"
 2d_physics/layer_6="Enemy_Attack_Bullet"
+2d_physics/layer_7="None Mask With"
 
 [rendering]
 

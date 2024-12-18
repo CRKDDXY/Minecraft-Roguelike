@@ -82,13 +82,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_c106c"]
 radius = 37.8319
 
-[node name="ParticleExplosion" type="Node2D" node_paths=PackedStringArray("bang_range", "particles")]
+[node name="ParticleExplosion" type="Node2D" node_paths=PackedStringArray("bang_range", "particles", "anima_1")]
+z_index = 4096
 script = ExtResource("1_p4bt6")
 bang_range = NodePath("Bang Range")
 particles = NodePath("Particles")
+anima_1 = NodePath("Particles/1")
 
 [node name="Particles" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="1" type="AnimatedSprite2D" parent="Particles"]
 position = Vector2(18.5714, 18.5714)
@@ -159,6 +160,7 @@ autoplay = "idle"
 flip_h = true
 
 [node name="Bang Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bang Range"]
