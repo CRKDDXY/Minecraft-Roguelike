@@ -12,11 +12,10 @@ func _process(_delta):
 	if Enemy.get_child_count() < 10:
 		for i in range(10 - Enemy.get_child_count()):
 			var enemy = null
-			match(randi_range(0,1)):
-				0:
-					enemy = preload("res://Objects/Enemy/Zombie/zombie.tscn").instantiate()
-				1:
-					enemy = preload("res://Objects/Enemy/Skeleton/Skeleton.tscn").instantiate()
+			match(randi_range(2,2)):
+				0:enemy = preload("res://Objects/Enemy/Zombie/zombie.tscn").instantiate()
+				1:enemy = preload("res://Objects/Enemy/Skeleton/Skeleton.tscn").instantiate()
+				2:enemy = preload("res://Objects/Enemy/Creeper/Creeper.tscn").instantiate()
 			# 生成随机的角度
 			var angle = randf_range(0, 2 * PI)
 			# 生成随机的半径，范围是 400 到 600

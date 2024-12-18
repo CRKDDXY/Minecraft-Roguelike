@@ -11,8 +11,8 @@ func _ready():
 	var skill_books = preload("res://Objects/Player/Skill/Book/books.tscn").instantiate()
 	skill_books.scale *= 0.5
 	
-	skills.add_child(skill_bow)
-	skills.add_child(skill_books)
+	#skills.add_child(skill_bow)
+	#skills.add_child(skill_books)
 
 func _process(_delta):
 	#移动逻辑

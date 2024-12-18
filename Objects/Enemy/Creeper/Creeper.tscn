@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7d22v2axhr7d"]
+
+[ext_resource type="Script" path="res://Objects/Enemy/Creeper/Creeper.gd" id="1_d0bqx"]
+[ext_resource type="Texture2D" uid="uid://bk4b715u3xhr0" path="res://Objects/Enemy/Creeper/creeper.png" id="1_qbmdd"]
+[ext_resource type="PackedScene" uid="uid://cbrgtentn7mr5" path="res://Objects/Enemy/Creeper/Particle Explosion.tscn" id="2_cidt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxnye"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spp8j"]
+radius = 21.0238
+
+[node name="Creeper" type="CharacterBody2D" node_paths=PackedStringArray("ang_range", "bang_timer", "creeper_texture")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_d0bqx")
+ang_range = NodePath("ParticleExplosion")
+bang_timer = NodePath("Bang Timer")
+creeper_texture = NodePath("Creeper")
+
+[node name="Creeper" type="Sprite2D" parent="."]
+texture = ExtResource("1_qbmdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bxnye")
+
+[node name="ParticleExplosion" parent="." instance=ExtResource("2_cidt0")]
+
+[node name="Stop move" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stop move"]
+shape = SubResource("CircleShape2D_spp8j")
+
+[node name="Bang Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="Stop move" to="." method="_on_stop_move_body_entered"]
+[connection signal="body_exited" from="Stop move" to="." method="_on_stop_move_body_exited"]
+[connection signal="timeout" from="Bang Timer" to="." method="_on_bang_timer_timeout"]

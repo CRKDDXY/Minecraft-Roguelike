@@ -9,6 +9,10 @@ func _get_hit():
 @export var anima : AnimatedSprite2D
 @export var attack_timer : Timer
 var goal : CharacterBody2D #这里其实就是玩家对象
+var player : CharacterBody2D
+
+func _ready():
+	player = get_node("../../Player")
 
 func _on_attack_range_body_entered(body):
 	goal = body
@@ -28,8 +32,8 @@ func _process(_delta):
 			_on_attack_timer_timeout()
 			attack_timer.start()
 	
-	if get_node("../..").Player != null and goal == null:
-		velocity = position.direction_to(get_node("../..").Player.position) * speed
+	if player != null and goal == null:
+		velocity = position.direction_to(player.position) * speed
 		move_and_slide()
 
 func _on_attack_timer_timeout():
@@ -42,6 +46,7 @@ func _on_attack_timer_timeout():
 		Bow_Bullet.position = position
 		Bow_Bullet.get_node("hit").collision_layer = 6 #怪物子弹
 		Bow_Bullet.get_node("hit").collision_mask = 1 #攻击对象玩家
-		Bow_Bullet.speed = 450 #怪物子弹的移动速度
+		Bow_Bullet.modulate = Color8(255,127,127)
+		Bow_Bullet.speed = 300 #怪物子弹的移动速度
 		get_node("../../Enemy Bullets").add_child(Bow_Bullet)
 		anima.play("idle")

@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=3 uid="uid://cbrgtentn7mr5"]
+
+[ext_resource type="Texture2D" uid="uid://dqlqkh42iyrqu" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_0.png" id="1_bklqc"]
+[ext_resource type="Script" path="res://Objects/Enemy/Creeper/Particle Explosion.gd" id="1_p4bt6"]
+[ext_resource type="Texture2D" uid="uid://beut8h0compxq" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_1.png" id="2_50msk"]
+[ext_resource type="Texture2D" uid="uid://dxred4lnwgf70" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_2.png" id="3_lqqtw"]
+[ext_resource type="Texture2D" uid="uid://dss0we3lclgon" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_3.png" id="4_5a7ry"]
+[ext_resource type="Texture2D" uid="uid://b4rxw7ltrmk04" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_4.png" id="5_jlixe"]
+[ext_resource type="Texture2D" uid="uid://c3dj45qmop4br" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_5.png" id="6_5jskh"]
+[ext_resource type="Texture2D" uid="uid://efejlkx5u5gj" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_6.png" id="7_pco6v"]
+[ext_resource type="Texture2D" uid="uid://d3vk24nj4apwj" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_7.png" id="8_voy5f"]
+[ext_resource type="Texture2D" uid="uid://dtrfggxs0iogp" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_8.png" id="9_52gny"]
+[ext_resource type="Texture2D" uid="uid://cwyhiwsh55gs4" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_9.png" id="10_yprvk"]
+[ext_resource type="Texture2D" uid="uid://tfewtc0xig2j" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_10.png" id="11_ef2lc"]
+[ext_resource type="Texture2D" uid="uid://uktl37yw6g0m" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_11.png" id="12_mf0bc"]
+[ext_resource type="Texture2D" uid="uid://dny4uirv5u3kb" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_12.png" id="13_n8uis"]
+[ext_resource type="Texture2D" uid="uid://dv51mq2f7ulr7" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_13.png" id="14_6wmmi"]
+[ext_resource type="Texture2D" uid="uid://bp62gs52ui8jj" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_14.png" id="15_rmpxk"]
+[ext_resource type="Texture2D" uid="uid://68cxi720cl3g" path="res://Objects/Enemy/Creeper/particle_explosion/explosion_15.png" id="16_m64qq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rirmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bklqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_50msk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lqqtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5a7ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jlixe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5jskh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pco6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_voy5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_52gny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yprvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ef2lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mf0bc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_n8uis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6wmmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rmpxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_m64qq")
+}],
+"loop": false,
+"name": &"bang",
+"speed": 45.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c106c"]
+radius = 37.8319
+
+[node name="ParticleExplosion" type="Node2D" node_paths=PackedStringArray("bang_range", "particles")]
+script = ExtResource("1_p4bt6")
+bang_range = NodePath("Bang Range")
+particles = NodePath("Particles")
+
+[node name="Particles" type="Node2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="1" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(18.5714, 18.5714)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+flip_v = true
+
+[node name="2" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(15.7143, -11.4286)
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="3" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(20, 0)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="4" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(-10, 14.2857)
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="5" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(-20, 0)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+flip_v = true
+
+[node name="6" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(-17.1429, -15.7143)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="7" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(0, 20)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="8" type="AnimatedSprite2D" parent="Particles"]
+position = Vector2(0, -20)
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="9" type="AnimatedSprite2D" parent="Particles"]
+scale = Vector2(1.145, 1.145)
+sprite_frames = SubResource("SpriteFrames_rirmm")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="Bang Range" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bang Range"]
+shape = SubResource("CircleShape2D_c106c")
+
+[connection signal="animation_finished" from="Particles/1" to="." method="_on__animation_finished"]
+[connection signal="body_entered" from="Bang Range" to="." method="_on_bang_range_body_entered"]
+[connection signal="body_exited" from="Bang Range" to="." method="_on_bang_range_body_exited"]
