@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://swhh4wv4eg6n"]
+
+[ext_resource type="Texture2D" uid="uid://c7vm4875snfgc" path="res://Objects/Experience Orb/experience_bottle.png" id="1_6prr0"]
+[ext_resource type="Script" path="res://Objects/Experience Orb/Experience.gd" id="1_huvk3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e8sq"]
+radius = 43.0116
+
+[node name="Experience" type="Area2D" node_paths=PackedStringArray("Sp2d")]
+collision_layer = 128
+script = ExtResource("1_huvk3")
+Sp2d = NodePath("ExperienceBottle")
+
+[node name="ExperienceBottle" type="Sprite2D" parent="."]
+texture = ExtResource("1_6prr0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0e8sq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b323hisuq6pqy"]
 
-[ext_resource type="Script" path="res://Objects/Player/Skill/Hp Hui/Hp Bar.gd" id="1_1eds2"]
+[ext_resource type="Script" path="res://Objects/Player/Hp Hui/Hp Bar.gd" id="1_1eds2"]
 
 [node name="HpBar" type="GridContainer"]
 offset_right = 100.0

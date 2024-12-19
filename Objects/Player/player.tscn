@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl67i73288500"]
+[gd_scene load_steps=9 format=3 uid="uid://bl67i73288500"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_jmjpj"]
 [ext_resource type="Texture2D" uid="uid://b12mcopmkfmtv" path="res://Objects/Player/Alex.png" id="2_hvha7"]
 [ext_resource type="Script" path="res://Objects/Player/Camera Dither.gd" id="3_f8hl6"]
-[ext_resource type="PackedScene" uid="uid://b323hisuq6pqy" path="res://Objects/Player/Skill/Hp Hui/Hp Bar.tscn" id="4_sftwh"]
+[ext_resource type="PackedScene" uid="uid://b323hisuq6pqy" path="res://Objects/Player/Hp Hui/Hp Bar.tscn" id="4_26j56"]
+[ext_resource type="Texture2D" uid="uid://dl74fprc6ddk6" path="res://Objects/Player/ExBar Hui/under.png" id="5_phe24"]
+[ext_resource type="Texture2D" uid="uid://ce877fkrifo58" path="res://Objects/Player/ExBar Hui/frount.png" id="6_co0k0"]
+[ext_resource type="Script" path="res://Objects/Player/ExBarSet.gd" id="7_fpy5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vynar"]
 size = Vector2(8, 8)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("skills", "camera", "hp_bar")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("skills", "camera", "ExBar", "hp_bar")]
 z_index = 1000
 collision_mask = 0
 script = ExtResource("1_jmjpj")
 skills = NodePath("Skills")
 camera = NodePath("Camera2D")
+ExBar = NodePath("Camera2D/TextureProgressBar")
 hp_bar = NodePath("Camera2D/HpBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -25,11 +29,33 @@ shape = SubResource("RectangleShape2D_vynar")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_f8hl6")
 
-[node name="HpBar" parent="Camera2D" instance=ExtResource("4_sftwh")]
+[node name="HpBar" parent="Camera2D" instance=ExtResource("4_26j56")]
 offset_left = -125.0
 offset_top = 70.0
 offset_right = -25.0
 offset_bottom = 170.0
 scale = Vector2(0.5, -0.5)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Camera2D" node_paths=PackedStringArray("level_text")]
+offset_left = -65.0
+offset_top = 66.0
+offset_right = 117.0
+offset_bottom = 71.0
+scale = Vector2(1, 0.7)
+value = 70.0
+texture_under = ExtResource("5_phe24")
+texture_progress = ExtResource("6_co0k0")
+script = ExtResource("7_fpy5s")
+level_text = NodePath("Label")
+
+[node name="Label" type="Label" parent="Camera2D/TextureProgressBar"]
+layout_mode = 0
+offset_top = -11.0
+offset_right = 182.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 17
+text = "0123456789"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Skills" type="Node2D" parent="."]

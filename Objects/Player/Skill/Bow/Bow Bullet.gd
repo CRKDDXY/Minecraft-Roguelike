@@ -34,7 +34,7 @@ func _on_hit_body_entered(body):
 	if body.name == "Player":
 		#每只箭只能攻击玩家一次
 		if can_give_player_hit:
-			body._get_hit(0)
 			can_give_player_hit = false
+			body._get_hit(0)
 	else:
 		body._get_hit()

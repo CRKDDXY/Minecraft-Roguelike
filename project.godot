@@ -19,7 +19,13 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1536
 window/size/viewport_height=864
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="res://Misc/TextFont/GABRIOLA.TTF"
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
 
 [input]
 
@@ -57,6 +63,7 @@ move_right={
 2d_physics/layer_5="Enemy_Attack_Range"
 2d_physics/layer_6="Enemy_Attack_Bullet"
 2d_physics/layer_7="None Mask With"
+2d_physics/layer_8="Experience"
 
 [rendering]
 

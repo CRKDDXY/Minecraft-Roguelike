@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnwfcul47s4sg"]
+[gd_scene load_steps=5 format=3 uid="uid://bnwfcul47s4sg"]
 
 [ext_resource type="Script" path="res://Objects/Enemy/Zombie/zombie.gd" id="1_v3rie"]
 [ext_resource type="Texture2D" uid="uid://b2nk5wcmoy8an" path="res://Objects/Enemy/Zombie/Zombie.png" id="2_yxv8c"]
@@ -6,9 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oodpr"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s46kn"]
+size = Vector2(12, 12)
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 9
 script = ExtResource("1_v3rie")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,3 +19,18 @@ texture = ExtResource("2_yxv8c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oodpr")
+
+[node name="Attack Range" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Range"]
+shape = SubResource("RectangleShape2D_s46kn")
+
+[node name="Attack Timer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="body_entered" from="Attack Range" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="Attack Range" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]

@@ -1,8 +1,8 @@
 extends GridContainer
 
 var hp_state = {
-	"hold" = "res://Objects/Player/Skill/Hp Hui/hold.png",
-	"lose" = "res://Objects/Player/Skill/Hp Hui/lose.png"
+	"hold" = "res://Objects/Player/Hp Hui/hold.png",
+	"lose" = "res://Objects/Player/Hp Hui/lose.png"
 }
 
 var total_hp_num : int = 0 #目前拥有的总血量
@@ -29,7 +29,7 @@ func _hp_bar_update():
 			self.get_child(i).texture = load(hp_state["lose"])
 
 func _player_get_hit(num : int):
-	if hold_hp_num > num:
+	if hold_hp_num >= num:
 		hold_hp_num -= num
 		_hp_bar_update() #更新血条
 	else:

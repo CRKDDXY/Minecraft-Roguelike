@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdkqw35e2awxb"
-path="res://.godot/imported/lose.png-8e157d805e34300909ee140e13e7ec32.ctex"
+path="res://.godot/imported/lose.png-7da87eb8e83234a33e94d58018385c21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Player/Skill/Hp Hui/lose.png"
-dest_files=["res://.godot/imported/lose.png-8e157d805e34300909ee140e13e7ec32.ctex"]
+source_file="res://Objects/Player/Hp Hui/lose.png"
+dest_files=["res://.godot/imported/lose.png-7da87eb8e83234a33e94d58018385c21.ctex"]
 
 [params]
 

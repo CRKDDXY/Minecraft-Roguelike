@@ -8,14 +8,19 @@ var move_speed : float = 150 #玩家初始移动速度
 #相机
 @export var camera : Camera2D
 
+#经验条
+@export var ExBar : TextureProgressBar
+
 func _ready():
 	var skill_bow = preload("res://Objects/Player/Skill/Bow/bow.tscn").instantiate()
 	skill_bow.scale *= 0.5
 	var skill_books = preload("res://Objects/Player/Skill/Book/books.tscn").instantiate()
 	skill_books.scale *= 0.5
+
+	skills.add_child(skill_bow)
+	skills.add_child(skill_books)
 	
-	#skills.add_child(skill_bow)
-	#skills.add_child(skill_books)
+	ExBar._bar_update() #更新经验条
 
 func _process(_delta):
 	#移动逻辑
@@ -34,4 +39,3 @@ func _get_hit(type : int):
 		0:pass
 		1:camera.add_trauma(0.5)
 	hp_bar._player_get_hit(1)
-	

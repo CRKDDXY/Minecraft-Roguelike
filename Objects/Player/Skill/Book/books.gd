@@ -2,6 +2,7 @@ extends Node2D
 
 # 设定圆的半径
 var radius = 35
+var book_num : int = 3 #实际上就是get_child_count()
 
 func _set_book_position():
 	var num_book = get_child_count()
@@ -15,8 +16,16 @@ func _set_book_position():
 		get_child(i).position = Vector2(x, y)
 		# 如果使用的是Sprite2D，设置图像
 
+func _set_book_num(num : int):
+	for i in range(abs(num)):
+		if num > 0:
+			add_child(preload("res://Objects/Player/Skill/Book/one_book.tscn").instantiate())
+		else:
+			get_child(-1).queue_free()
+	_set_book_position() #设置位置
+
 func _ready():
-	_set_book_position()
+	_set_book_num(7)
 
 func _process(_delta):
 	if self.rotation_degrees + 0.5 >= 361:

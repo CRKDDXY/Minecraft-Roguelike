@@ -1,15 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dldfc0tv0vpl3"]
+[gd_scene load_steps=3 format=3 uid="uid://dldfc0tv0vpl3"]
 
 [ext_resource type="Script" path="res://Main Tscn/main_tscn.gd" id="1_j7sk4"]
 [ext_resource type="PackedScene" uid="uid://bl67i73288500" path="res://Objects/Player/player.tscn" id="1_y65ee"]
-[ext_resource type="PackedScene" uid="uid://bnwfcul47s4sg" path="res://Objects/Enemy/Zombie/zombie.tscn" id="2_x54bu"]
-[ext_resource type="PackedScene" uid="uid://b3xclkw45wjr2" path="res://Objects/Enemy/Skeleton/Skeleton.tscn" id="4_lhx84"]
-[ext_resource type="PackedScene" uid="uid://c7d22v2axhr7d" path="res://Objects/Enemy/Creeper/Creeper.tscn" id="5_8torb"]
 
-[node name="Main Tscn" type="Node2D" node_paths=PackedStringArray("Enemy", "Player")]
+[node name="Main Tscn" type="Node2D" node_paths=PackedStringArray("Enemy", "Player", "Expers")]
 script = ExtResource("1_j7sk4")
 Enemy = NodePath("Enemy")
 Player = NodePath("Player")
+Expers = NodePath("Experiences")
 
 [node name="Player" parent="." instance=ExtResource("1_y65ee")]
 position = Vector2(768, 432)
@@ -17,25 +15,8 @@ scale = Vector2(6, 6)
 
 [node name="Enemy" type="Node2D" parent="."]
 
-[node name="Zombie" parent="Enemy" instance=ExtResource("2_x54bu")]
-scale = Vector2(6, 6)
-
-[node name="Zombie2" parent="Enemy" instance=ExtResource("2_x54bu")]
-position = Vector2(250, 0)
-scale = Vector2(6, 6)
-
-[node name="Zombie3" parent="Enemy" instance=ExtResource("2_x54bu")]
-position = Vector2(119, 237)
-scale = Vector2(6, 6)
-
-[node name="Skeleton" parent="Enemy" instance=ExtResource("4_lhx84")]
-position = Vector2(212, 611)
-scale = Vector2(6, 6)
-
-[node name="Creeper" parent="Enemy" instance=ExtResource("5_8torb")]
-position = Vector2(1063, 471)
-scale = Vector2(6, 6)
-
 [node name="Player Bullets" type="Node2D" parent="."]
 
 [node name="Enemy Bullets" type="Node2D" parent="."]
+
+[node name="Experiences" type="Node2D" parent="."]

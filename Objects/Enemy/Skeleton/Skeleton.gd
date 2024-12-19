@@ -29,17 +29,22 @@ func _process(_delta):
 			anima_father.look_at(goal.position)
 			anima_father.rotation_degrees += 135 #角度校准
 		if attack_timer.is_stopped():
-			_on_attack_timer_timeout()
+			_on_attack_timer_timeout() #射击逻辑
 			attack_timer.start()
 	
+	#移动逻辑
 	if player != null and goal == null:
 		velocity = position.direction_to(player.position) * speed
 		move_and_slide()
 
+var bullet_num : int = 0
+
 func _on_attack_timer_timeout():
+	bullet_num += 1
 	anima.play("attack")
 	await anima.animation_finished #这里千万要记得动画不能设置成循环播放了->这里在帧调用里面使用会导致卡顿
-	if goal != null:
+	bullet_num -= 1
+	if goal != null and bullet_num == 0:
 		var Bow_Bullet = preload("res://Objects/Player/Skill/Bow/Bow Bullet.tscn").instantiate()
 		Bow_Bullet.goal = goal.position
 		Bow_Bullet.scale *= 3
