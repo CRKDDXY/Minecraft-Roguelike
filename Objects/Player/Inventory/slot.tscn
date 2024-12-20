@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl1p3p4qr8ab"]
+
+[ext_resource type="Script" path="res://Objects/Player/Inventory/slot.gd" id="1_p5m5b"]
+[ext_resource type="Texture2D" uid="uid://bne4jtcbkbp6g" path="res://Objects/Player/Inventory/Inventory Texture/Slot Background.png" id="1_yt52p"]
+[ext_resource type="Texture2D" uid="uid://cjbi4gvrbkmwy" path="res://Objects/Player/Inventory/Items/Hoe/golden_hoe.png" id="3_xkfav"]
+
+[node name="Slot" type="TextureButton" node_paths=PackedStringArray("Item_Texture", "Number_Text")]
+custom_minimum_size = Vector2(18, 18)
+offset_right = 18.0
+offset_bottom = 18.0
+script = ExtResource("1_p5m5b")
+Item_Texture = NodePath("Item")
+Number_Text = NodePath("Number")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(9, 9)
+texture = ExtResource("1_yt52p")
+
+[node name="Item" type="Sprite2D" parent="."]
+position = Vector2(9, 9)
+texture = ExtResource("3_xkfav")
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 18.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 10
+text = "11454"

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwcejy6f6bm80"]
+
+[ext_resource type="Script" path="res://Objects/Player/Inventory/Inventory.gd" id="1_bkm4n"]
+[ext_resource type="Texture2D" uid="uid://uyv31eo6ctbr" path="res://Objects/Player/Inventory/Inventory Texture/Inventory Background.png" id="1_v4mv5"]
+
+[node name="Inventory" type="Node2D" node_paths=PackedStringArray("gird")]
+script = ExtResource("1_bkm4n")
+gird = NodePath("ScrollContainer/GridContainer")
+
+[node name="Background Texture" type="Sprite2D" parent="."]
+position = Vector2(-1, 2.25001)
+scale = Vector2(0.988636, 1.03383)
+texture = ExtResource("1_v4mv5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = -82.0
+offset_top = -61.0
+offset_right = 81.0
+offset_bottom = 65.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 9
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)

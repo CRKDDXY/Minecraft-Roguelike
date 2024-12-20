@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://dldfc0tv0vpl3"]
 
-[ext_resource type="Script" path="res://Main Tscn/main_tscn.gd" id="1_j7sk4"]
-[ext_resource type="PackedScene" uid="uid://bl67i73288500" path="res://Objects/Player/player.tscn" id="1_y65ee"]
+[ext_resource type="Script" path="res://Main Tscns/Fights/Fight.gd" id="1_ypo6o"]
+[ext_resource type="PackedScene" uid="uid://bl67i73288500" path="res://Objects/Player/player.tscn" id="2_q30h8"]
 
-[node name="Main Tscn" type="Node2D" node_paths=PackedStringArray("Enemy", "Player", "Expers")]
-script = ExtResource("1_j7sk4")
+[node name="Fight" type="Node2D" node_paths=PackedStringArray("Enemy", "Player", "Expers")]
+script = ExtResource("1_ypo6o")
 Enemy = NodePath("Enemy")
 Player = NodePath("Player")
 Expers = NodePath("Experiences")
 
-[node name="Player" parent="." instance=ExtResource("1_y65ee")]
+[node name="Player" parent="." instance=ExtResource("2_q30h8")]
 position = Vector2(768, 432)
 scale = Vector2(6, 6)
 
