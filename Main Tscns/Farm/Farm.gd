@@ -25,12 +25,12 @@ func _process(_delta):
 		var tween = hand.create_tween()
 		tween.tween_property(hand,"rotation_degrees",15,0.1)
 		tween.tween_property(hand,"rotation_degrees",-25,0.1)
+		if Choose_Dirt != null: #还是得先判断是否选中了某个土地，防止指针滞空导致游戏崩溃
+			_dirt_with_player_hand()
 		await tween.finished
 		tween.kill()
 		#如果选中了某个耕地，对该耕地进行逻辑判定，判定对象为（耕地+玩家手持物品）
 		#其他操作逻辑
-		if Choose_Dirt != null: #还是得先判断是否选中了某个土地，防止指针滞空导致游戏崩溃
-			_dirt_with_player_hand()
 
 	#开关背包
 	if Input.is_action_just_pressed("Open_Inventory"):
@@ -77,21 +77,21 @@ func _dirt_with_player_hand():
 	#手部物品指针：hand_item_name : String -> 物品名称
 	if hand_item_name != null:
 		match(hand_item_name):
-			"wooden_hoe":
+			"wooden_hoe": #锄头
 				if Choose_Dirt.type == "dirt":
 					Choose_Dirt._set_dirt_type("farmland")
-			"water_bucket":
+			"water_bucket": #水桶
 				if Choose_Dirt.type == "farmland":
 					Choose_Dirt._set_dirt_type("farmland_moist")
-			"wheat_seed":
+			"wheat_seed": #小麦种子
 				if Choose_Dirt.type == "farmland_moist": #湿土地
 					if Choose_Dirt.Is_Crop_growing == false: #没有正在生长中的作物
 						Choose_Dirt._set_crop_type(hand_item_name) #播种逻辑
-			"cocoa_beans":
+			"cocoa_beans": #可可豆
 				if Choose_Dirt.type == "jungle_log": #从林木
 					if Choose_Dirt.Is_Crop_growing == false: #没有正在生长中的作物
 						Choose_Dirt._set_crop_type(hand_item_name) #播种逻辑
-			"nether_wart":
-				if Choose_Dirt.type == "soul_sand": #从林木
+			"nether_wart": #地狱庞
+				if Choose_Dirt.type == "soul_sand": #灵魂沙
 					if Choose_Dirt.Is_Crop_growing == false: #没有正在生长中的作物
 						Choose_Dirt._set_crop_type(hand_item_name) #播种逻辑

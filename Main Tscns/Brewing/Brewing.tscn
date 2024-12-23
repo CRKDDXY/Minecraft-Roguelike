@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://brqoloyr272ls"]
+
+[ext_resource type="Script" path="res://Main Tscns/Brewing/Brewing.gd" id="1_ta6a7"]
+[ext_resource type="PackedScene" uid="uid://da7v3t7i8kkv" path="res://Objects/Brewing Stand/Brewing Stand.tscn" id="2_pan4p"]
+[ext_resource type="PackedScene" uid="uid://bl67i73288500" path="res://Objects/Player/player.tscn" id="3_c8xhw"]
+
+[node name="Brewing" type="Node2D" node_paths=PackedStringArray("Player", "Stand")]
+script = ExtResource("1_ta6a7")
+Player = NodePath("Player")
+Stand = NodePath("Brewing Stand")
+
+[node name="Brewing Stand" parent="." instance=ExtResource("2_pan4p")]
+position = Vector2(65, 48)
+scale = Vector2(1.5, 1.5)
+
+[node name="Player" parent="." instance=ExtResource("3_c8xhw")]
+position = Vector2(22, 24)
+
+[node name="Camera2D" parent="Player" index="2"]
+zoom = Vector2(6, 6)
+
+[connection signal="body_entered" from="Brewing Stand" to="." method="_Player_in_Stand_Range"]
+[connection signal="body_exited" from="Brewing Stand" to="." method="_Player_Level_Stand_Range"]
+
+[editable path="Player"]

@@ -58,7 +58,7 @@ var dirt_type = {
 
 #作物生长每阶段周期 / s
 var crops_update_stage_wait_time = {
-	"wheat_seed" : 1, #小麦
+	"wheat_seed" : 5, #小麦
 	"Sweet Berry Bush" : 1, #浆果
 	"Potatoes" : 1, #土豆
 	"nether_wart" : 1, #地狱庞

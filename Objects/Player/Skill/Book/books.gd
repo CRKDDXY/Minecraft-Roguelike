@@ -25,7 +25,7 @@ func _set_book_num(num : int):
 	_set_book_position() #设置位置
 
 func _ready():
-	_set_book_num(7)
+	_set_book_num(3)
 
 func _process(_delta):
 	if self.rotation_degrees + 0.5 >= 361:

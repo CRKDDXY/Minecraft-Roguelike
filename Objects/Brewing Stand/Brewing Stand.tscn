@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://da7v3t7i8kkv"]
+
+[ext_resource type="Script" path="res://Objects/Brewing Stand/Brewing Stand.gd" id="1_fd0he"]
+[ext_resource type="Texture2D" uid="uid://ttkaatb8cvev" path="res://Objects/Brewing Stand/brewing_stand.png" id="1_oyh0j"]
+[ext_resource type="Texture2D" uid="uid://be53b0jqqsmoq" path="res://Objects/Brewing Stand/idle.png" id="2_0unvk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm6r0"]
+size = Vector2(16.6371, 17.0136)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rrme0"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2.5, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -15, 0)
+scale_min = 1.2
+scale_max = 1.2
+turbulence_noise_strength = 0.0
+turbulence_noise_speed = Vector3(0, -10, 0)
+
+[node name="Brewing Stand" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_fd0he")
+
+[node name="BrewingStand" type="Sprite2D" parent="."]
+texture = ExtResource("1_oyh0j")
+
+[node name="GlassBottle" type="Sprite2D" parent="."]
+position = Vector2(3.5, 0.65)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_0unvk")
+
+[node name="GlassBottle2" type="Sprite2D" parent="."]
+position = Vector2(-3.5, 0.65)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_0unvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qm6r0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.201527, 0.201527, 0.201527, 1)
+position = Vector2(0, -5.5)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_rrme0")
+fixed_fps = 60
